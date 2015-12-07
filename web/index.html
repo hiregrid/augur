@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+		<title>Augur-HireGrid POC</title>
+		<!-- Piwik -->
+		<script type="text/javascript">
+		  var _paq = _paq || [];
+		  _paq.push(['trackPageView']);
+		  _paq.push(['enableLinkTracking']);
+		  (function() {
+			var u="//dev.data.brightleaf.io/";
+			_paq.push(['setTrackerUrl', u+'piwik.php']);
+			_paq.push(['setSiteId', 8]);
+			var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+			g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+		  })();
+		</script>
+		<noscript><p><img src="//dev.data.brightleaf.io/piwik.php?idsite=8" style="border:0;" alt="" /></p></noscript>
+		<!-- End Piwik Code -->
+		<script>
+            function callbackName ( json ) {
+				_paq.push(['setCustomVariable','1','deviceId',json.device.ID]);
+				_paq.push(['setCustomVariable','2','consumerId',json.consumer.UID]);
+				_paq.push(['trackPageView']);
+			
+				document.getElementById("DDID").innerHTML="DDID :: "+json.device.ID; 
+				document.getElementById("UUID").innerHTML="UUID :: "+json.consumer.UID; 
+				document.getElementById("json").innerHTML = JSON.stringify(json, undefined, 2);
+            }
+        </script>
+        <script id="augur.js" async data-callback="callbackName" src="//cdn.augur.io/augur.min.js" data-warpspeed="trvi">
+        </script>
+    </head>
+    <body>
+		<div id="DDID"></div>
+		<div id="UUID"></div>
+		<pre id="json"></pre>
+	</body>
+</html>
